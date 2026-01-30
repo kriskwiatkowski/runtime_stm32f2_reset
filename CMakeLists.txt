@@ -4,7 +4,7 @@ include(FetchContent)
 set(RUNNER_TARGET stm32f2)
 project(
     ${RUNNER_TARGET}_runtime
-    VERSION 0.0.3
+    VERSION 0.0.4.1
     LANGUAGES C ASM)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
