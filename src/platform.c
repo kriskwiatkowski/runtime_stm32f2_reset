@@ -73,12 +73,12 @@ char platform_getch(void) {
     return d;
 }
 
-// Used by printf
 void platform_putchar(char c) {
     uint8_t d = c;
     HAL_UART_Transmit(&UartHandle, &d, 1, 5000);
 }
 
+// Used by printf
 void _putchar(char character) { platform_putchar(character); }
 
 /// ############################
