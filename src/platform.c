@@ -68,14 +68,14 @@ void SysTick_Handler(void) { ++k_systick_milliseconds; }
 
 char platform_getchar(void) {
     uint8_t d;
-    while (HAL_UART_Receive(&UartHandle, &d, 1, 5000) != HAL_OK)
+    while (HAL_UART_Receive(&UartHandle, &d, 1, 60000 /*1 minute*/) != HAL_OK)
         ;
     return d;
 }
 
 void platform_putchar(char c) {
     uint8_t d = c;
-    HAL_UART_Transmit(&UartHandle, &d, 1, 5000);
+    HAL_UART_Transmit(&UartHandle, &d, 1, 60000 /*1 minute*/);
 }
 
 // Used by printf

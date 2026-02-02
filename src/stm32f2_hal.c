@@ -11,7 +11,6 @@
 #include "stm32f2xx_hal_uart.h"
 
 void hal_init(void) {
-
 #ifdef USE_INTERNAL_CLK
     RCC_OscInitTypeDef RCC_OscInitStruct;
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
