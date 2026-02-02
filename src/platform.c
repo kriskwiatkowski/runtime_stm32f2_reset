@@ -185,6 +185,13 @@ static void trigger_low(void) { HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, RESET); }
 int platform_init(platform_op_mode_t a) {
     hal_init();
     cyclecount_init();
+    /*
+    #if SS_VER == SS_VER_2_1
+    uart1_init(&UartHandle, 230400);
+#else
+    uart1_init(&UartHandle, 38400);
+#endif
+    */
     uart1_init(&UartHandle, 230400);
     trigger_init();
     setup_rng();
