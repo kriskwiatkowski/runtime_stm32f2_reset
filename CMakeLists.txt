@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 include(FetchContent)
 
-set(RUNNER_TARGET stm32f2)
+set(RUNNER_TARGET stm32f215_cw)
 project(
     ${RUNNER_TARGET}_runtime
-    VERSION 0.0.4.2
+    VERSION 1.0.0
     LANGUAGES C ASM)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
