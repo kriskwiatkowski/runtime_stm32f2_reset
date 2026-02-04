@@ -340,10 +340,12 @@ __STATIC_INLINE void __set_FPSCR(uint32_t fpscr) {
   \param [in]    value  Value to reverse
   \return               Reversed value
  */
+// clang-format off
 #ifndef __NO_EMBEDDED_ASM
 __attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(
     uint32_t value) {
-    rev16 r0, r0 bx lr
+    rev16 r0, r0
+    bx lr
 }
 #endif
 
@@ -356,10 +358,11 @@ __attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(
 #ifndef __NO_EMBEDDED_ASM
 __attribute__((section(".revsh_text"))) __STATIC_INLINE __ASM int32_t __REVSH(
     int32_t value) {
-    revsh r0, r0 bx lr
+    revsh r0, r0
+    bx lr
 }
 #endif
-
+// clang-format on
 /**
   \brief   Rotate Right in unsigned value (32 bit)
   \details Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits.
@@ -533,12 +536,15 @@ __attribute__((always_inline)) __STATIC_INLINE uint32_t __RBIT(uint32_t value) {
   \param [in]    value  Value to rotate
   \return               Rotated value
  */
-#ifndef __NO_EMBEDDED_ASM
+// clang-format off
+ #ifndef __NO_EMBEDDED_ASM
 __attribute__((section(".rrx_text"))) __STATIC_INLINE __ASM uint32_t __RRX(
     uint32_t value) {
-    rrx r0, r0 bx lr
+    rrx r0, r0
+    bx lr
 }
 #endif
+// clang-format on
 
 /**
   \brief   LDRT Unprivileged (8 bit)

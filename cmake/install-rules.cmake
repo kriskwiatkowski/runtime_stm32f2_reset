@@ -1,5 +1,6 @@
 # ---- Install runtime lib ----
 set(EXPORT_TARGET ${RUNNER_TARGET}_target)
+
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${RUNNER_TARGET}ConfigVersion.cmake"
@@ -14,12 +15,6 @@ install(
 install(
     FILES ${LINKER_SCRIPT}
     DESTINATION ${CMAKE_INSTALL_LIBDIR})
-
-install(
-    FILES
-        ${CMAKE_SOURCE_DIR}/src/stm32f215ret6.ld
-    DESTINATION
-        ${CMAKE_INSTALL_LIBDIR})
 
 install(
     TARGETS ${RUNNER_TARGET}

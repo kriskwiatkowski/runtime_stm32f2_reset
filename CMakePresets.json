@@ -7,38 +7,58 @@
     },
     "configurePresets": [
         {
-            "name": "base",
+            "name": "base-gnu",
             "generator": "Ninja",
             "hidden": true,
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "toolchainFile": "toolchains/gcc-armv7_m-unknown-none-eabi.toolchain",
             "cacheVariables": {
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/${presetName}",
-                "EXTRA_C_FLAGS": "-DSTM32F2 -DSTM32"
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/${presetName}"
             }
         },
         {
-            "name": "stm32f215_cw",
-            "inherits": "base",
+            "name": "base-armcc",
+            "generator": "Ninja",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "toolchainFile": "toolchains/armcc-arm-unknown-none-eabi-host-win64.toolchain",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/${presetName}",
+                "EXTRA_COMPILE_OPTIONS": "--cpu=CORTEX-M3",
+                "EXTRA_C_FLAGS": " -W --apcs=interwork --library_type=microlib --split_sections",
+                "EXTRA_ASM_FLAGS": "--predefine \"__MICROLIB SETA 1\""
+            }
+        },
+        {
+            "name": "stm32f215_cw-gnu-release",
+            "inherits": "base-gnu",
             "displayName": "ARMv7-M Release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
-            "name": "stm32f215_cw-minsizerel",
-            "inherits": "base",
+            "name": "stm32f215_cw-gnu-minsizerel",
+            "inherits": "base-gnu",
             "displayName": "ARMv7-M MinSizeRel",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "MinSizeRel"
             }
         },
         {
-            "name": "stm32f215_cw-reldebinfo",
-            "inherits": "base",
+            "name": "stm32f215_cw-gnu-reldebinfo",
+            "inherits": "base-gnu",
             "displayName": "ARMv7-M RelWithDebInfo",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "stm32f215_cw-armcc-minsizerel",
+            "inherits": "base-armcc",
+            "displayName": "ARMv7-M MinSizeRel",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "MinSizeRel"
             }
         }
     ],
@@ -52,35 +72,45 @@
             ]
         },
         {
-            "name": "stm32f215_cw",
-            "configurePreset": "stm32f215_cw",
+            "name": "stm32f215_cw-gnu-release",
+            "configurePreset": "stm32f215_cw-gnu-release",
             "inherits": "base"
         },
         {
-            "name": "stm32f215_cw-minsizerel",
-            "configurePreset": "stm32f215_cw-minsizerel",
+            "name": "stm32f215_cw-gnu-minsizerel",
+            "configurePreset": "stm32f215_cw-gnu-minsizerel",
             "inherits": "base"
         },
         {
-            "name": "stm32f215_cw-reldebinfo",
-            "configurePreset": "stm32f215_cw-reldebinfo",
+            "name": "stm32f215_cw-gnu-reldebinfo",
+            "configurePreset": "stm32f215_cw-gnu-reldebinfo",
+            "inherits": "base"
+        },
+        {
+            "name": "stm32f215_cw-armcc-minsizerel",
+            "configurePreset": "stm32f215_cw-armcc-minsizerel",
             "inherits": "base"
         }
     ],
     "packagePresets": [
         {
-            "name": "stm32f215_cw",
-            "configurePreset": "stm32f215_cw",
+            "name": "stm32f215_cw-gnu-release",
+            "configurePreset": "stm32f215_cw-gnu-release",
             "packageDirectory": "${sourceDir}/out/package/${presetName}"
         },
         {
-            "name": "stm32f215_cw-minsizerel",
-            "configurePreset": "stm32f215_cw-minsizerel",
+            "name": "stm32f215_cw-gnu-minsizerel",
+            "configurePreset": "stm32f215_cw-gnu-minsizerel",
             "packageDirectory": "${sourceDir}/out/package/${presetName}"
         },
         {
-            "name": "stm32f215_cw-reldebinfo",
-            "configurePreset": "stm32f215_cw-reldebinfo",
+            "name": "stm32f215_cw-gnu-reldebinfo",
+            "configurePreset": "stm32f215_cw-gnu-reldebinfo",
+            "packageDirectory": "${sourceDir}/out/package/${presetName}"
+        },
+        {
+            "name": "stm32f215_cw-armcc-minsizerel",
+            "configurePreset": "stm32f215_cw-armcc-minsizerel",
             "packageDirectory": "${sourceDir}/out/package/${presetName}"
         }
     ]
